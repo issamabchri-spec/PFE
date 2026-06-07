@@ -1,0 +1,559 @@
+/* ==========================================================================
+   CREATIVE LUXURY THEME VARIABLES (OPTIMIZED)
+   ========================================================================== */
+:root {
+    --bg-main: #0B0F0B;          /* Deep rich caviar black with a green undertone */
+    --surface-card: #121812;     /* Slightly lighter deep moss surface for contrast */
+    
+    /* Luxury Emerald Accents - Deep jewel tones */
+    --primary-color: #1A4329;    
+    --primary-gradient: linear-gradient(135deg, #13331F, #225735);
+    
+    /* Refined Muted Gold & Champagne - Metallic luxury */
+    --gold-accent: #D4AF37;      
+    --gold-gradient: linear-gradient(135deg, #E6C667, #A17E26);
+    
+    /* Refined Functional Colors */
+    --accent-red: #E05353;       /* Muted rich crimson warning instead of neon red */
+    --text-pure: #FFFFFF;
+    --text-body: #A9BBA9;        /* Soft sage gray for perfect body readability */
+    
+    /* Luxury glass and glow effects */
+    --glass-blur: blur(12px);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --gold-glow: 0 0 25px rgba(212, 175, 55, 0.15);
+    --card-glow: 0 20px 40px rgba(0, 0, 0, 0.65);
+    
+    --transition-premium: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   BASE STYLE OVERHAUL
+   ========================================================================== */
+html {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Cinzel', 'Playfair Display', 'Inter', sans-serif;
+    margin: 0;
+    background: var(--bg-main);
+    color: var(--text-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   NAVBAR (GLASSMORPHISM EFFECT)
+   ========================================================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(18, 24, 18, 0.75); /* Updated to match new surface-card base */
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--glass-border);
+    color: var(--text-pure);
+    padding: 20px 50px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-links a {
+    color: var(--text-body);
+    margin-left: 25px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 4px;
+    position: relative;
+    transition: var(--transition-premium);
+}
+
+/* Creative Underline Animation */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: var(--gold-gradient);
+    transition: var(--transition-premium);
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover {
+    color: var(--gold-accent);
+}
+
+.nav-links a:hover::after {
+    width: 70%;
+}
+
+/* ==========================================================================
+   HERO (CINEMATIC LUXURY IMMERSION)
+   ========================================================================== */
+.hero {
+    height: 90vh;
+    background: linear-gradient(rgba(11, 15, 11, 0.4), var(--bg-main)),
+                url('../images/restaurant.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-pure);
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 35px;
+    max-width: 600px;
+    letter-spacing: 1px;
+    color: var(--text-body);
+}
+
+.btn {
+    background: transparent;
+    color: var(--gold-accent);
+    padding: 14px 35px;
+    text-decoration: none;
+    border: 1px solid var(--gold-accent);
+    border-radius: 0px; /* Sophisticated sharp edges */
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: var(--transition-premium);
+}
+
+.btn:hover {
+    background: var(--gold-gradient);
+    color: var(--bg-main);
+    box-shadow: var(--gold-glow);
+    transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   UTILITY & SEARCH
+   ========================================================================== */
+.title {
+    text-align: center;
+    margin: 60px 0 30px;
+}
+
+.title h2 {
+    font-size: 2.5rem;
+    color: var(--text-pure);
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.badge {
+    display: inline-block;
+    background: rgba(224, 83, 83, 0.12); /* Balanced with the new crimson tint */
+    color: var(--accent-red);
+    border: 1px solid rgba(224, 83, 83, 0.25);
+    padding: 4px 14px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 10px 0;
+}
+
+.search-box {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.search-box input {
+    width: 400px;
+    padding: 16px;
+    border-radius: 0px; /* Modern flat architecture */
+    border: none;
+    border-bottom: 2px solid #1a241a; /* Darker tone to match the background flow */
+    background: var(--surface-card);
+    color: var(--text-pure);
+    font-size: 1rem;
+    outline: none;
+    text-align: center;
+    transition: var(--transition-premium);
+}
+
+.search-box input:focus {
+    border-bottom-color: var(--gold-accent);
+    background: #182118;
+}
+
+.categories {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+.categories button {
+    padding: 12px 28px;
+    border: 1px solid #1a241a;
+    background: transparent;
+    color: var(--text-body);
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition-premium);
+}
+
+.categories button:hover,
+.categories .active {
+    border-color: var(--gold-accent);
+    color: var(--gold-accent);
+    background: rgba(214, 175, 55, 0.05);
+}
+
+/* ==========================================================================
+   FOOD CARDS (MODERN ASYMMETRICAL LUXURY)
+   ========================================================================== */
+.menu-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.food-card {
+    background: var(--surface-card);
+    padding: 24px;
+    /* Asymmetrical border radius for a high-end architectural feel */
+    border-radius: 24px 4px 24px 4px; 
+    text-align: center;
+    box-shadow: var(--card-glow);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    transition: var(--transition-premium);
+}
+
+.food-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(214, 175, 55, 0.25);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), var(--gold-glow);
+}
+
+.food-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 16px 4px 16px 4px;
+    filter: grayscale(15%);
+    transition: var(--transition-premium);
+}
+
+.food-card:hover img {
+    filter: grayscale(0%);
+}
+
+.price {
+    color: var(--gold-accent);
+    font-size: 1.4rem;
+    font-weight: 400;
+    font-family: serif;
+    margin: 15px 0;
+}
+
+.food-card button {
+    background: var(--primary-gradient);
+    color: var(--text-pure);
+    border: none;
+    padding: 14px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    transition: var(--transition-premium);
+    margin-top: 15px;
+}
+
+.food-card button:hover {
+    background: var(--gold-gradient);
+    color: var(--bg-main);
+    box-shadow: var(--gold-glow);
+}
+
+/* ==========================================================================
+   CART & SYSTEM INTERACTION
+   ========================================================================== */
+.cart-item {
+    background: var(--surface-card);
+    padding: 24px;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 700px;
+    border-radius: 8px;
+    border-left: 3px solid var(--gold-accent);
+    box-shadow: var(--card-glow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-controls span {
+    min-width: 28px;
+    text-align: center;
+    color: var(--text-pure);
+    font-weight: 700;
+}
+
+.cart-item button {
+    background: rgba(224, 83, 83, 0.08);
+    color: var(--accent-red);
+    border: 1px solid rgba(224, 83, 83, 0.2);
+    padding: 8px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: var(--transition-premium);
+}
+
+.cart-item button:hover {
+    background: var(--accent-red);
+    color: var(--text-pure);
+    box-shadow: 0 0 15px rgba(224, 83, 83, 0.3);
+}
+
+.cart-total {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1.5rem;
+    color: var(--text-pure);
+    font-weight: 300;
+}
+
+.checkout-btn {
+    background: var(--gold-gradient);
+    color: var(--bg-main);
+    padding: 16px 45px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    box-shadow: var(--gold-glow);
+    transition: var(--transition-premium);
+}
+
+.checkout-btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.1);
+}
+
+.cart-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 24px 0 50px;
+    flex-wrap: wrap;
+}
+
+.secondary-btn {
+    background: transparent;
+    color: var(--accent-red);
+    padding: 16px 45px;
+    border: 1px solid rgba(224, 83, 83, 0.35);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: var(--transition-premium);
+}
+
+.secondary-btn:hover {
+    background: var(--accent-red);
+    color: var(--text-pure);
+}
+
+.empty-cart {
+    text-align: center;
+    margin: 50px auto;
+}
+
+.empty-cart h2 {
+    color: var(--text-pure);
+    font-weight: 300;
+    margin-bottom: 24px;
+}
+
+.disabled-link {
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+.checkout-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.7fr);
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto 70px;
+    padding: 0 30px;
+}
+
+.checkout-panel {
+    background: var(--surface-card);
+    padding: 28px;
+    border-radius: 8px;
+    box-shadow: var(--card-glow);
+}
+
+.checkout-panel h2 {
+    color: var(--text-pure);
+    margin-top: 0;
+    font-weight: 300;
+}
+
+.checkout-panel form {
+    display: grid;
+    gap: 14px;
+}
+
+.checkout-panel label {
+    color: var(--text-pure);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.checkout-panel input,
+.checkout-panel textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #1a241a;
+    border-radius: 4px;
+    background: #0f150f;
+    color: var(--text-pure);
+    font: inherit;
+}
+
+.checkout-panel input:focus,
+.checkout-panel textarea:focus {
+    border-color: var(--gold-accent);
+    outline: none;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.summary-item strong,
+#checkout-total {
+    color: var(--gold-accent);
+}
+
+/* ==========================================================================
+   MOBILE ECOSYSTEM RE-MAPPING
+   ========================================================================== */
+@media (max-width: 768px) {
+    .menu-container {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .food-card {
+        width: 100%;
+    }
+
+    .search-box input {
+        width: 90%;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 20px;
+        padding: 25px;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .nav-links a {
+        margin: 0;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.02);
+        padding: 12px;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .cart-item {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .checkout-layout {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+}
