@@ -48,45 +48,41 @@ function renderSummary() {
 checkoutForm.addEventListener("submit", event => {
     event.preventDefault();
 
-    if (cart.length === 0) return;
+    if (cart.length === 0) {
+        alert("السلة ديالك خاوية!");
+        return;
+    }
 
-    const order = {
-        id: Date.now(),
+    // جمع البيانات ديال الفورم
+    const formData = {
         customerName: document.getElementById("customer-name").value.trim(),
         customerPhone: document.getElementById("customer-phone").value.trim(),
         customerAddress: document.getElementById("customer-address").value.trim(),
         customerNote: document.getElementById("customer-note").value.trim(),
-        items: cart,
-        total: cart.reduce((sum, item) => sum + Number(item.price) * Number(item.quantity), 0),
-        status: "pending"
+        items: cart // السلة كاملة
     };
 
-    const orders = getOrders();
-    orders.push(order);
-
-    localStorage.setItem("orders", JSON.stringify(orders));
-    localStorage.removeItem("cart");
-
-    alert("Order confirmed. Backend saving will be connected later.");
-    window.location.href = "index.html";
+    // صيفط البيانات للـ PHP بالـ Fetch API
+    fetch("place_order.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("تم تسجيل الطلب بنجاح! 🎉 رقم الطلب ديالك هو: " + data.order_id);
+            localStorage.removeItem("cart"); // مسح السلة ملي تكلل المأمورية
+            window.location.href = "index.php"; // رجع للمنيو
+        } else {
+            alert("وقع مشكل: " + data.message);
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("وقع خطأ في الاتصال بالسيرفر!");
+    });
 });
 
-function getOrders() {
-    try {
-        return JSON.parse(localStorage.getItem("orders")) || [];
-    } catch (error) {
-        localStorage.removeItem("orders");
-        return [];
-    }
-}
-
-function escapeHTML(value) {
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-renderSummary();

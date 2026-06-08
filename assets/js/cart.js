@@ -97,9 +97,20 @@ function clearCart() {
     saveCart();
 }
 
+// 👑 الفانكشن الجديدة لي كتقرا الكاش وتصيفط الحساب للـ Navbar
+function updateCartBadge() {
+    const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalItems = currentCart.reduce((total, item) => total + item.quantity, 0);
+    const badge = document.getElementById("cart-badge");
+    if (badge) {
+        badge.textContent = totalItems;
+    }
+}
+//
 function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
     renderCart();
+    updateCartBadge(); // 🔥 تحديث الـ Badge لايف غير ينقص الكليان أو يمسح شي حبة
 }
 
 function escapeHTML(value) {
@@ -111,4 +122,6 @@ function escapeHTML(value) {
         .replace(/'/g, "&#039;");
 }
 
+// تشغيل الـ Render والـ Badge ديريكت غير تفتح صفحة السلة
 renderCart();
+updateCartBadge();

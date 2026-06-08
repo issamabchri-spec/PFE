@@ -54,10 +54,30 @@ categoryButtons.forEach(button => {
 });
 
 
+
+
+
+
+/* ==========================================================================
+   👑 LIVE CART BADGE SYSTEM
+   ========================================================================== */
+function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let totalItems = 0;
+    cart.forEach(item => {
+        totalItems += item.quantity ? Number(item.quantity) : 1;
+    });
+    const badge = document.getElementById("cart-badge");
+    if (badge) {
+        badge.textContent = totalItems;
+    }
+}
+// تشغيل الفانكشن تلقائياً عند فتح الصفحة
+document.addEventListener("DOMContentLoaded", updateCartBadge);
+
 /* =======================
    CART SYSTEM
 ======================= */
-
 cartButtons.forEach(button => {
     button.addEventListener("click", () => {
 
@@ -82,6 +102,7 @@ cartButtons.forEach(button => {
 
         localStorage.setItem("cart", JSON.stringify(cart));
 
-        alert(name + " added to cart 🛒");
+        // 🔥 التحديث السحري لايف غير تكليكي
+        updateCartBadge();
     });
 });

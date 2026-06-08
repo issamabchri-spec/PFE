@@ -12,12 +12,12 @@
 <div class="navbar">
     <h2>MyRestaurant</h2>
 
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="index.html#menu">Menu</a>
-        <a href="cart.php">Cart</a>
-        <a href="../auth/login.php">Login</a>
-    </div>
+  <div class="nav-links">
+    <a href="index.php#home">Home</a>
+    <a href="index.php#menu">Menu</a>
+    <a href="cart.php">Cart 🛒 <span id="cart-badge" style="background: red; color: white; border-radius: 50%; padding: 2px 7px; font-size: 12px; font-weight: bold;">0</span></a>
+    <a href="../auth/login.php">Login</a>
+</div>
 </div>
 
 <h1 class="title">Your Cart</h1>

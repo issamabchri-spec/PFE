@@ -1,3 +1,8 @@
+
+<?php
+// هاد السطر كيجيب المسار الحقيقي للمشروع ديالك تلقائياً كيفما كان ف السيرفر
+$base_url = "http://" . $_SERVER['HTTP_HOST'] . "/PFE/";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,12 +18,12 @@
 <div class="navbar">
     <h2>MyRestaurant 🍽️</h2>
 
-    <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#menu">Menu</a>
-        <a href="cart.php">Cart 🛒</a>
-        <a href="../auth/login.php">Login</a>
-    </div>
+   <div class="nav-links">
+    <a href="<?php echo $base_url; ?>user/index.php#home">Home</a>
+    <a href="<?php echo $base_url; ?>user/index.php#menu">Menu</a>
+    <a href="<?php echo $base_url; ?>user/cart.php">Cart 🛒 <span id="cart-badge" style="background: red; color: white; border-radius: 50%; padding: 2px 7px; font-size: 12px; font-weight: bold;">0</span></a>
+    <a href="<?php echo $base_url; ?>auth/login.php">Login</a>
+</div>
 </div>
 
 <!-- HOME SECTION -->
