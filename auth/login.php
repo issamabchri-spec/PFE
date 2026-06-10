@@ -1,5 +1,5 @@
 <?php
-// 1. ديما كنبداو الـ Session ف أول السطر باش السيرفر يعقل على الأدمن
+// 1. kanbdaw session
 session_start();
 
 // 2. إيلا كان الأدمن ديجا مسجل الدخول، صيفطو ديريكت للـ Dashboard بلا ما يعاود الـ Login
@@ -10,18 +10,18 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
 
 $error = "";
 
-// 3. ملي الأدمن يضغط على بوطونة "دخول" (POST Request)
+// 3.mli admin yclicki ela button
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // كنجيبو البيانات ونظفوها من الفراغات بـ trim
+    //trim: kanjibo lbayanat w kandfo lfaraghat
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
-    // 4. التحقق من المعلومات الثابتة
+    // 4. kant7a9e9o mn ma3lomat s7i7a
     if ($email === "admin@restaurant.com" && $password === "admin123") {
         // إيلا صحيحة، كنشعلو الـ Session وكنعطيوه قيمة true
         $_SESSION['admin_logged_in'] = true;
         
-        // كنوجهوه للـ Dashboard
+        //kanjwho l dashboard
         header("Location: dashboard.php");
         exit;
     } else {

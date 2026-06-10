@@ -1,6 +1,6 @@
 
 <?php
-// هاد السطر كيجيب المسار الحقيقي للمشروع ديالك تلقائياً كيفما كان ف السيرفر
+//Had star kayjib lmassar l7a9i9i dial project
 $base_url = "http://" . $_SERVER['HTTP_HOST'] . "/PFE/";
 ?>
 <!DOCTYPE html>

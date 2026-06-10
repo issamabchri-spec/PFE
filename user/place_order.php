@@ -2,7 +2,7 @@
 // إرسال الاستجابة كـ JSON
 header('Content-Type: application/json');
 
-// ربط الفيشي ديال قاعدة البيانات
+// رrabt file dial database
 require_once '../includes/db.php';
 
 // قراءة البيانات الـ JSON لي صيفط الجافاسكريبت
@@ -20,7 +20,7 @@ $customerAddress = trim($data['customerAddress']);
 $customerNote = trim($data['customerNote']);
 $items = $data['items'];
 
-// التحقق من أن الخانات الأساسية ماشي خاويين
+// checking wach lkhanat l2assasiyin khawyin
 if (empty($customerName) || empty($customerPhone) || empty($customerAddress) || empty($items)) {
     echo json_encode(['success' => false, 'message' => 'عفاك عمر كاع الخانات الأساسية!']);
     exit;
@@ -36,7 +36,7 @@ try {
     // بدء المعاملة (Transaction) باش يلا وقع غلط ف شي برودوي يتلغى كلشي
     $pdo->beginTransaction();
 
-    // 1. إدخال المعلومات في جدول orders
+    // 1. insert infos in orders table
     $sqlOrder = "INSERT INTO orders (customer_name, customer_phone, customer_address, customer_note, total_price, status) 
                  VALUES (:name, :phone, :address, :note, :total, 'pending')";
     
@@ -49,10 +49,10 @@ try {
         ':total' => $totalPrice
     ]);
 
-    // جيب الـ ID ديال هاد الكوموند لي عاد تكرات دابا نيت
+    // katrja3 dial akhir insert 3melt b had connection
     $orderId = $pdo->lastInsertId();
 
-    // 2. إدخال منتجات السلة في جدول order_items
+    // 2. insert prroducts in order_items
     $sqlItem = "INSERT INTO order_items (order_id, item_name, price, quantity) 
                 VALUES (:order_id, :item_name, :price, :quantity)";
     $stmtItem = $pdo->prepare($sqlItem);
@@ -66,13 +66,13 @@ try {
         ]);
     }
 
-    // إيلا داز كلشي أمان، حفظ التغييرات ف قاعدة البيانات
+    // ila koulchi nja7 sjel taghyirat f database
     $pdo->commit();
 
     echo json_encode(['success' => true, 'order_id' => $orderId]);
 
 } catch (Exception $e) {
-    // يلا وقع أي خطأ، ألغي كلشي وماتسجل والو
+    // ila w9a3 ay khata2 hbess koulchi
     $pdo->rollBack();
     echo json_encode(['success' => false, 'message' => 'خطأ في السيرفر: ' . $e->getMessage()]);
 }
