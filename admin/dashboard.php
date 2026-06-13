@@ -1,14 +1,22 @@
 <?php
-// ربط قاعدة البيانات
+session_start(); // ← زيد هاد السطر
+
+// حماية الصفحة
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    header("Location: ../auth/login.php");
+    exit;
+}
+
+// lindk database
 require_once '../includes/db.php';
 
 try {
-    // جلب جميع الطلبات مع الترتيب (الأحدث أولاً)
+    // Fetch all orders sorted by newest first
     $sql = "SELECT * FROM orders ORDER BY created_at DESC";
     $stmt = $pdo->query($sql);
     $orders = $stmt->fetchAll();
 } catch (Exception $e) {
-    die("خطأ في جلب البيانات: " . $e->getMessage());
+    die("Error fetching data: " . $e->getMessage());
 }
 ?>
 <!DOCTYPE html>
@@ -29,10 +37,10 @@ try {
 
 .admin-container { 
     max-width: 1200px; 
-    margin: 0 auto; /* هادي كتخليه يجي ف الوسط بالظبط */
+    margin: 0 auto; /* it centres it*/
     background: #121812; /* Deep Moss Surface */
     padding: 30px; 
-    border-radius: 16px 4px 16px 4px; /* التقطيعة الهندسية المميزة د السيت */
+    border-radius: 16px 4px 16px 4px; 
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.65); 
     border: 1px solid rgba(255, 255, 255, 0.02);
     box-sizing: border-box;
@@ -140,8 +148,8 @@ select:focus {
 <body>
 
 <div class="admin-container">
-    <h1>👨‍🍳 لوحة تحكم المطعم - Admin Dashboard</h1>
-    <p>هنا يمكنك تسيير الطلبات التي تأتي من الزبناء مباشرة وبشكل حي.</p>
+    <h1>👨‍🍳 Restaurant Control Panel - Admin Dashboard</h1>
+<p>Here you can manage orders coming from customers directly and in real-time.</p>
     
     <table>
         <thead>
@@ -150,16 +158,16 @@ select:focus {
                 <th>client</th>
                 <th>phone number</th>
                 <th>adress</th>
-                <th>المجموع الإجمالي</th>
-                <th>حالة الطلب</th>
-                <th>تغيير الحالة</th>
-                <th>التاريخ</th>
+                <th>Grand Total</th>
+                <th>Order Status</th>
+                <th>Change Status</th>
+                <th>Date</th>
             </tr>
         </thead>
         <tbody>
             <?php if (empty($orders)): ?>
                 <tr>
-                    <td colspan="8" style="text-align: center;">لا توجد أي طلبات حالياً.</td>
+                    <td colspan="8" style="text-align: center;">there is no orders right now</td>
                 </tr>
             <?php else: ?>
                 <?php foreach ($orders as $order): ?>
@@ -192,7 +200,7 @@ select:focus {
 
 <script>
 function updateStatus(orderId, newStatus) {
-    // صيفط التحديث للـ Backend بـ Fetch API
+    // Kanrbto front-end with back-end
     fetch("update_status.php", {
         method: "POST",
         headers: {
@@ -203,17 +211,17 @@ function updateStatus(orderId, newStatus) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            // تحديث الـ Badge فالبلاصة بلا ما تفرش الصفحة
+          // Update the badge instantly without showing the page
             const badge = document.getElementById(`badge-${orderId}`);
             badge.className = `status-badge ${newStatus}`;
             badge.innerText = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
         } else {
-            alert("وقع مشكل أثناء التحديث: " + data.message);
+            alert("An error occurred during the update: " + data.message);
         }
     })
     .catch(error => {
         console.error("Error:", error);
-        alert("خطأ في الاتصال بالسيرفر!");
+       alert("Error connecting to the server!");
     });
 }
 </script>

@@ -4,7 +4,7 @@ session_start();
 
 // 2. إيلا كان الأدمن ديجا مسجل الدخول، صيفطو ديريكت للـ Dashboard بلا ما يعاود الـ Login
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
-    header("Location: dashboard.php");
+    header("Location: ../admin/dashboard.php"); // ✅
     exit;
 }
 
@@ -18,14 +18,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // 4. kant7a9e9o mn ma3lomat s7i7a
     if ($email === "admin@restaurant.com" && $password === "admin123") {
-        // إيلا صحيحة، كنشعلو الـ Session وكنعطيوه قيمة true
+        // "If it's correct, we start the session and set its value to true."
         $_SESSION['admin_logged_in'] = true;
         
         //kanjwho l dashboard
-        header("Location: dashboard.php");
+        header("Location: ../admin/dashboard.php"); // ✅
         exit;
     } else {
-        // إيلا غلط، كنعرضو ميساج د الخطأ
+        //Displayin error message
         $error = "البريد الإلكتروني أو الرقم السري غير صحيح!";
     }
 }
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 <div class="login-box">
-    <h2>🔐 تسجيل دخول الإدارة</h2>
+    <h2>🔐 Administration Login</h2>
     
     <?php if (!empty($error)): ?>
         <div class="error">⚠️ <?php echo $error; ?></div>
@@ -60,16 +60,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     <form action="login.php" method="POST">
         <div class="input-group">
-            <label>البريد الإلكتروني:</label>
+            <label>Email</label>
             <input type="email" name="email" placeholder="admin@restaurant.com" required>
         </div>
         
         <div class="input-group">
-            <label>الرقم السري:</label>
+            <label>Password</label>
             <input type="password" name="password" placeholder="••••••••" required>
         </div>
         
-        <button type="submit">دخول للوحة التحكم</button>
+        <button type="submit">Control Panel Login</button>
     </form>
 </div>
 
