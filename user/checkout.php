@@ -13,10 +13,10 @@
     <h2>MyRestaurant</h2>
 
     <div class="nav-links">
-        <a href="index.html">Home</a>
+        <a href="index.php">Home</a>
         <a href="index.html#menu">Menu</a>
         <a href="cart.php">Cart</a>
-        <a href="../auth/login.php">Login</a>
+       <!-- <a href="../auth/login.php">Login</a> -->
     </div>
 </div>
 

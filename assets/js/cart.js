@@ -110,7 +110,7 @@ function updateCartBadge() {
 function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
     renderCart();
-    updateCartBadge(); // 🔥 تحديث الـ Badge لايف غير ينقص الكليان أو يمسح شي حبة
+    updateCartBadge(); // 🔥 Update the badge live as soon as the client reduces or deletes an item
 }
 
 function escapeHTML(value) {
@@ -122,6 +122,6 @@ function escapeHTML(value) {
         .replace(/'/g, "&#039;");
 }
 
-// تشغيل الـ Render والـ Badge ديريكت غير تفتح صفحة السلة
+// Run Render and Badge immediately as soon as the cart page opens
 renderCart();
 updateCartBadge();

@@ -72,7 +72,7 @@ function updateCartBadge() {
         badge.textContent = totalItems;
     }
 }
-// تشغيل الفانكشن تلقائياً عند فتح الصفحة
+// 
 document.addEventListener("DOMContentLoaded", updateCartBadge);
 
 /* =======================
@@ -102,7 +102,7 @@ cartButtons.forEach(button => {
 
         localStorage.setItem("cart", JSON.stringify(cart));
 
-        // 🔥 التحديث السحري لايف غير تكليكي
+        // 🔥
         updateCartBadge();
     });
 });

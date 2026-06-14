@@ -49,20 +49,20 @@ checkoutForm.addEventListener("submit", event => {
     event.preventDefault();
 
     if (cart.length === 0) {
-        alert("السلة ديالك خاوية!");
+        alert("Your cart is empty!");
         return;
     }
 
-    // جمع البيانات ديال الفورم
+    // hma3 data dial form
     const formData = {
         customerName: document.getElementById("customer-name").value.trim(),
         customerPhone: document.getElementById("customer-phone").value.trim(),
         customerAddress: document.getElementById("customer-address").value.trim(),
         customerNote: document.getElementById("customer-note").value.trim(),
-        items: cart // السلة كاملة
+        items: cart //
     };
 
-    // صيفط البيانات للـ PHP بالـ Fetch API
+    // Fetch api
     fetch("place_order.php", {
         method: "POST",
         headers: {
@@ -73,16 +73,16 @@ checkoutForm.addEventListener("submit", event => {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert("تم تسجيل الطلب بنجاح! 🎉 رقم الطلب ديالك هو: " + data.order_id);
-            localStorage.removeItem("cart"); // مسح السلة ملي تكلل المأمورية
-            window.location.href = "index.php"; // رجع للمنيو
+            alert("Order placed successfully! 🎉 Your order number is: " + data.order_id);
+            localStorage.removeItem("cart"); // Clear the cart once the mission is successful
+            window.location.href = "index.php"; // Redirect back to the menu
         } else {
-            alert("وقع مشكل: " + data.message);
+            alert("error accured: " + data.message);
         }
     })
     .catch(error => {
         console.error("Error:", error);
-        alert("وقع خطأ في الاتصال بالسيرفر!");
+        alert("An error occurred while connecting to the server!");
     });
 });
 

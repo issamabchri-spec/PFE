@@ -2,7 +2,7 @@
 // 1. kanbdaw session
 session_start();
 
-// 2. إيلا كان الأدمن ديجا مسجل الدخول، صيفطو ديريكت للـ Dashboard بلا ما يعاود الـ Login
+// 2. If the admin is already logged in, send them directly to the Dashboard without needing to log in again
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
     header("Location: ../admin/dashboard.php"); // ✅
     exit;
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     } else {
         //Displayin error message
-        $error = "البريد الإلكتروني أو الرقم السري غير صحيح!";
+        $error = "Incorrect email or password!";
     }
 }
 ?>

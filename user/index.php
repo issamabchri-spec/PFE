@@ -1,6 +1,6 @@
 
 <?php
-//Had star kayjib lmassar l7a9i9i dial project
+// هاد السطر كيجيب المسار الحقيقي للمشروع ديالك تلقائياً كيفما كان ف السيرفر
 $base_url = "http://" . $_SERVER['HTTP_HOST'] . "/PFE/";
 ?>
 <!DOCTYPE html>
@@ -22,7 +22,7 @@ $base_url = "http://" . $_SERVER['HTTP_HOST'] . "/PFE/";
     <a href="<?php echo $base_url; ?>user/index.php#home">Home</a>
     <a href="<?php echo $base_url; ?>user/index.php#menu">Menu</a>
     <a href="<?php echo $base_url; ?>user/cart.php">Cart 🛒 <span id="cart-badge" style="background: red; color: white; border-radius: 50%; padding: 2px 7px; font-size: 12px; font-weight: bold;">0</span></a>
-    <a href="<?php echo $base_url; ?>auth/login.php">Login</a>
+     <!-- <a href="<?php echo $base_url; ?>auth/login.php">Login</a> -->
 </div>
 </div>
 

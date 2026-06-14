@@ -1,16 +1,16 @@
 <?php
-// إرسال الاستجابة كـ JSON
+// // Send the response as JSON
 header('Content-Type: application/json');
 
-// رrabt file dial database
+// rabt file dial database
 require_once '../includes/db.php';
 
-// قراءة البيانات الـ JSON لي صيفط الجافاسكريبت
+// Read the JSON data sent by JavaScript
 $input = file_get_contents('php://input');
 $data = json_decode($input, true);
 
 if (!$data) {
-    echo json_encode(['success' => false, 'message' => 'بيانات غير صالحة!']);
+    echo json_encode(['success' => false, 'message' => 'Invalid data!']);
     exit;
 }
 
@@ -22,18 +22,18 @@ $items = $data['items'];
 
 // checking wach lkhanat l2assasiyin khawyin
 if (empty($customerName) || empty($customerPhone) || empty($customerAddress) || empty($items)) {
-    echo json_encode(['success' => false, 'message' => 'عفاك عمر كاع الخانات الأساسية!']);
+    echo json_encode(['success' => false, 'message' => 'Please fill in all the required fields!']);
     exit;
 }
 
-// حساب المجموع الإجمالي (Total Price) فالـ Backend حيت السيكوريتي هادي
+// Calculate the total price on the backend because this is about security
 $totalPrice = 0;
 foreach ($items as $item) {
     $totalPrice += floatval($item['price']) * intval($item['quantity']);
 }
 
 try {
-    // بدء المعاملة (Transaction) باش يلا وقع غلط ف شي برودوي يتلغى كلشي
+    // Start the transaction, so if an error occurs with any product, everything is rolled back
     $pdo->beginTransaction();
 
     // 1. insert infos in orders table

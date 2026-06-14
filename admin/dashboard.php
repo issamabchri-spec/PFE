@@ -1,7 +1,7 @@
 <?php
-session_start(); // ← زيد هاد السطر
+session_start(); // 
 
-// حماية الصفحة
+// Protect the page
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header("Location: ../auth/login.php");
     exit;
@@ -52,7 +52,7 @@ try {
     border-color: rgba(214, 175, 55, 0.15); 
 }
 
-/* 🔄 غطاء ديناميكي لضمان عدم خروج الطابلو على اليمين أو اليسار */
+/* 🔄 Dynamic wrapper to ensure the table does not overflow to the right or left */
 .table-wrapper {
     width: 100%;
     overflow-x: auto;
@@ -63,7 +63,7 @@ try {
 table { 
     width: 100%; 
     border-collapse: collapse; 
-    text-align: center; /* رديناها Center باش كلشي يجي مستف ف الوسط موازن */
+    text-align: center; /* Set to center so everything aligns and balances perfectly in the middle */
     box-sizing: border-box;
 }
 
@@ -74,7 +74,7 @@ th, td {
 }
 
 th { 
-    background-color: rgba(19, 51, 31, 0.4); /* أخضر زمردي داكن */
+    background-color: rgba(19, 51, 31, 0.4); /* Dark emerald green */
     color: #FFFFFF; 
     font-weight: 600;
     text-transform: uppercase;
@@ -98,7 +98,7 @@ tr:hover td {
     letter-spacing: 1px;
     text-transform: uppercase;
     text-align: center;
-    width: 90px; /* توحيد العرض لجمالية الترتيب */
+    width: 90px; 
 }
 
 .pending { 
